@@ -1,0 +1,39 @@
+{% extends "main/header.html" %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+{% block content %}
+<main role="main" class="container-xl">
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Acceder</legend>
+                    {{ form|crispy }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Acceder</button>
+                <button class="btn btn-outline-info">
+                    <a href="{% provider_login_url 'google'%}?next=/">
+                        <i class="fab fa-google"></i>
+                        Acceder con Google
+                    </a>
+                    <button class="btn btn-outline-info">
+                        <a href="{% provider_login_url 'twitter'%}?next=/">
+                            <i class="fab fa-google"></i>
+                            Acceder con Twitter
+                        </a>
+                </button>
+            </button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Necesitas una cuenta? <a class="ml-2" href="{% url 'register' %}">Registrarse</a>
+            </small><br>
+            <small class="text-muted">
+                <a href="{% url 'password_reset' %}">Olvido su contraseña?</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}
